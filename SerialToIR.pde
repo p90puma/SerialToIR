@@ -31,7 +31,7 @@ if (Serial.available()){
       delay(10);
       //serial data is waiting, lets extract      
       int i=0;      
-      char X_buffer[9];
+      char X_buffer[9]; 
       while(i<10){
         X_buffer[i] = Serial.read();
         i++;

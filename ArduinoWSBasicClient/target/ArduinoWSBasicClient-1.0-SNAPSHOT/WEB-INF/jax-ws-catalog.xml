@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:41166/ArduinoWS/ArduinoWSService?wsdl" uri="wsdl/localhost_41166/ArduinoWS/ArduinoWSService.wsdl"/>
+    <system systemId="http://localhost:41166/ArduinoWS/ArduinoWSService?xsd=1" uri="wsdl/localhost_41166/ArduinoWS/ArduinoWSService.xsd_1.xsd"/>
+</catalog>
+
+
+
+
+
+
