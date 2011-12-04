@@ -17,39 +17,44 @@ import java.io.OutputStream;
  */
 public class ArduinoSerialPortListener implements SerialPortEventListener {
 
-    public SerialPort serial_port;
-    public InputStream input;
-    public OutputStream output;
+    public static SerialPort serial_port;
+    public static InputStream input;
+    public static OutputStream output;
 
     public ArduinoSerialPortListener() {
         try {
             init();
+            // add event listeners
+            serial_port.addEventListener((SerialPortEventListener) this);
+            serial_port.notifyOnDataAvailable(true);
+            Thread.sleep(1500);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
 
     public void writeToArduino(String str) throws Exception {
-        Thread.sleep(1500);
+        //sleeps seem to be required, will not function without.
+        
 
         output.write(str.getBytes());
 
-        Thread.sleep(1000);
-
-        input.close();
-        input = null;
-
-        output.close();
-        output = null;
-
-        serial_port.close();
-        serial_port = null;
+//        Thread.sleep(1000);
+//
+//        input.close();
+//        input = null;
+//
+//        output.close();
+//        output = null;
+//
+//        serial_port.close();
+//        serial_port = null;
     }
 
-    public void init() throws Exception {
+    public static void init() throws Exception {
 
         //update this to use properties file to specify which port the arduino will use. or on wsdl startup.
-        CommPortIdentifier portId = CommPortIdentifier.getPortIdentifier("COM4");//(CommPortIdentifier) n.nextElement();//CommPortIdentifier.getPortIdentifier(CommPortIdentifier.getPortIdentifiers());
+        CommPortIdentifier portId = CommPortIdentifier.getPortIdentifier("COM5");//(CommPortIdentifier) n.nextElement();//CommPortIdentifier.getPortIdentifier(CommPortIdentifier.getPortIdentifiers());
 
         serial_port = (SerialPort) portId.open("Arduino", 2000);
         serial_port.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
@@ -57,9 +62,7 @@ public class ArduinoSerialPortListener implements SerialPortEventListener {
         input = serial_port.getInputStream();
         output = serial_port.getOutputStream();
 
-        // add event listeners
-        serial_port.addEventListener((SerialPortEventListener) this);
-        serial_port.notifyOnDataAvailable(true);
+
 
     }
 

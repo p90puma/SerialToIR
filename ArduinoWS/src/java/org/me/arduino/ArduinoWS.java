@@ -46,9 +46,39 @@ public class ArduinoWS {//implements SerialPortEventListener {
     SerialPort serial_port;
     InputStream input;
     OutputStream output;
+    static ArduinoSerialPortListener aspl;
+    static String msg;
 
     @WebMethod(operationName = "SendSerialInput")
-    public String sendSerialInput(@WebParam(name = "input") String inputToArduino){
+    public String sendSerialInput(@WebParam(name = "input") String inputToArduino) {
+        try {
+            msg=msg+inputToArduino;
+            if (aspl == null) {
+                aspl = new ArduinoSerialPortListener();
+                return msg;
+            }
+            aspl.writeToArduino(inputToArduino);
+            return "Sent [" + inputToArduino + "] via Serial!";
+        } catch (Exception ex) {
+            return ex.toString();
+        }
+    }
+
+    //
+    @WebMethod(operationName = "SetupArduinoSerial")
+    public String setupArduinoSerial(@WebParam(name = "input") String inputToArduino) {
+        try {
+
+            ArduinoSerialPortListener aspl = new ArduinoSerialPortListener();
+            aspl.writeToArduino(inputToArduino);
+            return "Sent [" + inputToArduino + "] via Serial!";
+        } catch (Exception ex) {
+            return ex.toString();
+        }
+    }
+
+    @WebMethod(operationName = "closeArduinoSerial")
+    public String closeArduinoSerial(@WebParam(name = "input") String inputToArduino) {
         try {
 
             ArduinoSerialPortListener aspl = new ArduinoSerialPortListener();
