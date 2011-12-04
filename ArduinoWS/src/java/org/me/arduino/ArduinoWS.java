@@ -47,15 +47,12 @@ public class ArduinoWS {//implements SerialPortEventListener {
     InputStream input;
     OutputStream output;
     static ArduinoSerialPortListener aspl;
-    static String msg;
 
     @WebMethod(operationName = "SendSerialInput")
     public String sendSerialInput(@WebParam(name = "input") String inputToArduino) {
         try {
-            msg=msg+inputToArduino;
             if (aspl == null) {
                 aspl = new ArduinoSerialPortListener();
-                return msg;
             }
             aspl.writeToArduino(inputToArduino);
             return "Sent [" + inputToArduino + "] via Serial!";
@@ -64,26 +61,31 @@ public class ArduinoWS {//implements SerialPortEventListener {
         }
     }
 
-    //
     @WebMethod(operationName = "SetupArduinoSerial")
-    public String setupArduinoSerial(@WebParam(name = "input") String inputToArduino) {
+    public String setupArduinoSerial(@WebParam(name = "serialPort") String serialPort) {
         try {
 
-            ArduinoSerialPortListener aspl = new ArduinoSerialPortListener();
-            aspl.writeToArduino(inputToArduino);
-            return "Sent [" + inputToArduino + "] via Serial!";
+            //close the serial connection if it already exists, to prevent port conflicts.
+            if(aspl != null){
+                aspl.close();
+            }
+            aspl = new ArduinoSerialPortListener(serialPort);
+            return "Setup the Arduino on port: [" + serialPort + "]";
         } catch (Exception ex) {
             return ex.toString();
         }
     }
 
+
+/*
+ * refactor to not take an input.
+ */
     @WebMethod(operationName = "closeArduinoSerial")
     public String closeArduinoSerial(@WebParam(name = "input") String inputToArduino) {
         try {
-
-            ArduinoSerialPortListener aspl = new ArduinoSerialPortListener();
-            aspl.writeToArduino(inputToArduino);
-            return "Sent [" + inputToArduino + "] via Serial!";
+            aspl.close();
+            aspl = null;
+            return "Closed the Arduino serial connection";
         } catch (Exception ex) {
             return ex.toString();
         }
