@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.me.arduino;
 
 import gnu.io.CommPortIdentifier;
@@ -11,56 +10,60 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 /**
  *
  * @author P90Puma
  */
-public class ArduinoSerialPortListener implements SerialPortEventListener{
+public class ArduinoSerialPortListener implements SerialPortEventListener {
 
     public SerialPort serial_port;
     public InputStream input;
     public OutputStream output;
 
     public ArduinoSerialPortListener() {
-        try{
-        init();
-        } catch (Exception e){
-            int i =0;
-            
+        try {
+            init();
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }
-    
-    public void writeToArduino(String str) throws Exception{
+
+    public void writeToArduino(String str) throws Exception {
         Thread.sleep(1500);
 
-		output.write(str.getBytes());
+        output.write(str.getBytes());
 
-		Thread.sleep(1000);
+        Thread.sleep(1000);
 
-		input.close();
-		input=null;
+        input.close();
+        input = null;
 
-		output.close();
-		output=null;
+        output.close();
+        output = null;
 
-		    serial_port.close();
-		    serial_port=null;
+        serial_port.close();
+        serial_port = null;
     }
-    public void init() throws Exception{
+
+    public void init() throws Exception {
+
+        //update this to use properties file to specify which port the arduino will use. or on wsdl startup.
         CommPortIdentifier portId = CommPortIdentifier.getPortIdentifier("COM4");//(CommPortIdentifier) n.nextElement();//CommPortIdentifier.getPortIdentifier(CommPortIdentifier.getPortIdentifiers());
 
-            serial_port = (SerialPort) portId.open("Arduino", 2000);
-            serial_port.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+        serial_port = (SerialPort) portId.open("Arduino", 2000);
+        serial_port.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 
-            input = serial_port.getInputStream();
-            output = serial_port.getOutputStream();
+        input = serial_port.getInputStream();
+        output = serial_port.getOutputStream();
 
-            // add event listeners
-            serial_port.addEventListener((SerialPortEventListener)this);
-            serial_port.notifyOnDataAvailable(true);
-       
+        // add event listeners
+        serial_port.addEventListener((SerialPortEventListener) this);
+        serial_port.notifyOnDataAvailable(true);
+
     }
-     /**
+
+    /**
      * This should be called when you stop using the port.
      * This will prevent port locking on platforms like Linux.
      */
@@ -89,5 +92,4 @@ public class ArduinoSerialPortListener implements SerialPortEventListener{
         }
         // Ignore all the other eventTypes, but you should consider the other ones.
     }
-
 }
