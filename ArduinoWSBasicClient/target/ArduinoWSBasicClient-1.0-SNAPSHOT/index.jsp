@@ -40,10 +40,10 @@
     <body>
         <h1>ARDUINO Service</h1>
         <form name="Submit" action="ClientServlet">&nbsp;
-            <p>
-
-            <input type="text" name="value1" value="2" size="10"/>
-            </p>
+            
+            <h3>Basic serial message</h3>
+            <input type="text" name="arduino_msg" value="2" size="10"/>
+            
             <p>
            
             <input type="submit" value="Get Result" name="GetResult" />

@@ -39,12 +39,11 @@ public class ClientServlet extends HttpServlet {
 
             org.me.arduino.ArduinoWS port = service.getArduinoWSPort();
 
-            String i = request.getParameter("value1");
+            String i = request.getParameter("arduino_msg");
 
             String result = null;
 
             result = port.sendSerialInput(i);
-
 
             out.println("<br/>");
             out.println("Result:");
@@ -52,7 +51,6 @@ public class ClientServlet extends HttpServlet {
             ((Closeable) port).close();
 
         } catch (Exception e) {
-            int i = 0;
         } finally {
             out.close();
         }
