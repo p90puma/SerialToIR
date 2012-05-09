@@ -5,9 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Homepage</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Wsdl url</h1>
+        <a href="http://localhost:8084/ArduinoWS/ArduinoWSService?wsdl">wsdl</a>
     </body>
 </html>
