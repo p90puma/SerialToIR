@@ -1,1 +1,15 @@
 Serial Arduino input -> iRDA NEC output.
+
+Note:
+
+Application needs to be deployed on Tomcat, with RXTX installed from:
+
+http://www.cloudhopper.com/opensource/rxtx/
+
+For windows:
+
+Install:
+
+PATH\TO\JDK\jre\lib\ext\RXTXcomm.jar
+PATH\TO\JDK\jre\bin\rxtxParallel.dll
+PATH\TO\JDK\jre\bin\rxtxSerial.dll
