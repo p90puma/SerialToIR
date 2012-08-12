@@ -5,6 +5,9 @@
 
 package com.p90puma.arduinowsbasicclient;
 
+import com.p90puma.arduinows.ArduinoWS;
+import com.p90puma.arduinows.ArduinoWSService;
+
 /**
  *
  * @author P90Puma
@@ -19,8 +22,8 @@ public static void main(String [ ] args)
 
           
            try { // Call Web Service Operation
-               org.me.arduino.ArduinoWSService service = new org.me.arduino.ArduinoWSService();
-               org.me.arduino.ArduinoWS port = service.getArduinoWSPort();
+               ArduinoWSService service = new ArduinoWSService();
+               ArduinoWS port = service.getArduinoWSPort();
                // TODO initialize WS operation arguments here
                java.lang.String input = "10EF08F7";
                // TODO process result here

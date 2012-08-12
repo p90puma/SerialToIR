@@ -1,5 +1,7 @@
 package com.p90puma.arduinowsbasicclient;
 
+import com.p90puma.arduinows.ArduinoWS;
+import com.p90puma.arduinows.ArduinoWSService;
 import java.io.*;
 import javax.annotation.Resource;
 import javax.servlet.*;
@@ -7,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.WebServiceRef;
-import org.me.arduino.ArduinoWSService;
 
 /**
  *
@@ -16,7 +17,7 @@ import org.me.arduino.ArduinoWSService;
 @WebServlet(name = "ClientServlet", urlPatterns = {"/ClientServlet"})
 public class ClientServlet extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "http://localhost:41166/ArduinoWS/ArduinoWSService?wsdl")
+    @WebServiceRef(wsdlLocation = "http://localhost:8084/ArduinoWS/ArduinoWSService?wsdl")
     public ArduinoWSService service;
     @Resource
     protected WebServiceContext context;
@@ -37,7 +38,7 @@ public class ClientServlet extends HttpServlet {
         try {
             out.println("<h2>Servlet ClientServlet at " + request.getContextPath() + "</h2>");
 
-            org.me.arduino.ArduinoWS port = service.getArduinoWSPort();
+            ArduinoWS port = service.getArduinoWSPort();
 
             String i = request.getParameter("arduino_msg");
 
