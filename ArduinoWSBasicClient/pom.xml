@@ -30,7 +30,7 @@
                         <configuration>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/wsdl/ArduinoWSService.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/wsdl/ArduinoWSService.wsdl</wsdl>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>
