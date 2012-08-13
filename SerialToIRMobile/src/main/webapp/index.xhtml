@@ -1,17 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-        xmlns:pm="http://primefaces.org/mobile">
 
-	<h:head>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html"
+        renderKitId="PRIMEFACES_MOBILE">
 
-	</h:head>
-	
-	<h:body>
-	
-            <p:inputTextarea />
-		
-	</h:body>
-</html>
+    <pm:page title="SerialToIR">        
+        <pm:view id="main" swatch="a">
+            <pm:header title="SerialToIR">
+            </pm:header>
+
+            <pm:content>
+                <h:form id="remoteForm">                    
+                    <p:outputPanel id="container">                 
+                        <p:commandButton value="Power" update="container" actionListener="#{serialToIR.sendPower}" />
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+                            <p:commandButton value="Optical" update="container" actionListener="#{serialToIR.sendOptical}" />
+                            <p:commandButton value="Direct" update="container" actionListener="#{serialToIR.sendDirect}" />
+                        </h:panelGrid>
+                        <!--<div style="width: 50%;">-->
+                            <p:commandButton value="VolUP" update="container" actionListener="#{serialToIR.sendVolUP}" />
+                            <p:commandButton value="VolDOWN" update="container" actionListener="#{serialToIR.sendVolDOWN}" />
+                        <!--</div>-->
+                    </p:outputPanel>                           
+                </h:form>
+            </pm:content>
+        </pm:view>
+    </pm:page>
+
+</f:view>
