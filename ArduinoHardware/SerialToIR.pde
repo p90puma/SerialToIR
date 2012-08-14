@@ -8,8 +8,6 @@ Read serial data, take in hexadecimal values, convert into NEC iRDA communcation
 
 To be used mostly with the java app created to pass in serial input over WS/WSDL/SOAP.
 
-Also a button on PIN 2 to fire off the NEC power code for a Logitech Z5500 remote as a manual firing method.
-
  */
 
 //imports and usages for the IRRemote library found at
@@ -54,14 +52,5 @@ void loop() //begin main loop
         //32 is the size of the NEC code in bits. Always use 32 for NEC.
         irsend.sendNEC(necCode, 32);
 
-    } else if (digitalRead(inputPin2) == HIGH) {
-
-        Serial.println("Sent Power Code for Z5500!");
-        irsend.sendNEC(0x10EF08F7, 32);
-        delay(500);
-
-
-    }
-
+    } 
 }
-
