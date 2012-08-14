@@ -10,6 +10,8 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 /**
  *
@@ -44,6 +46,20 @@ public class ArduinoSerialPortListener implements SerialPortEventListener {
         output.write(str.getBytes());
     }
 
+    public ArrayList<CommPortIdentifier> getSerialPorts() throws Exception {
+        ArrayList<CommPortIdentifier> ports = new ArrayList<CommPortIdentifier>();
+        CommPortIdentifier port;
+        Enumeration portList = CommPortIdentifier.getPortIdentifiers();
+        System.out.println("Get List");
+        while (portList.hasMoreElements()) {
+            port = (CommPortIdentifier) portList.nextElement();
+            if (port.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+                ports.add(port);
+            }
+        }
+        return ports;
+    }
+
     public static void init(String serialport) throws Exception {
 
         //update this to use properties file to specify which port the arduino will use. or on wsdl startup.
@@ -66,8 +82,8 @@ public class ArduinoSerialPortListener implements SerialPortEventListener {
     }
 
     /**
-     * This should be called when you stop using the port.
-     * This will prevent port locking on platforms like Linux.
+     * This should be called when you stop using the port. This will prevent
+     * port locking on platforms like Linux.
      */
     public synchronized void close() {
         if (serial_port != null) {

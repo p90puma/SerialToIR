@@ -4,9 +4,11 @@
  */
 package com.p90puma.arduinows;
 
+import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -32,6 +34,7 @@ public class ArduinoWS {
             aspl.writeToArduino(inputToArduino);
             return "Sent [" + inputToArduino + "] via Serial!";
         } catch (Exception ex) {
+            System.out.println(ex.toString());
             return ex.toString();
         }
     }
@@ -39,7 +42,6 @@ public class ArduinoWS {
     @WebMethod(operationName = "SetupArduinoSerial")
     public String setupArduinoSerial(@WebParam(name = "serialPort") String serialPort) {
         try {
-
             //close the serial connection if it already exists, to prevent port conflicts.
             if (aspl != null) {
                 aspl.close();
@@ -47,6 +49,7 @@ public class ArduinoWS {
             aspl = new ArduinoSerialPortListener(serialPort);
             return "Setup the Arduino on port: [" + serialPort + "]";
         } catch (Exception ex) {
+            System.out.println(ex.toString());
             return ex.toString();
         }
     }
@@ -58,7 +61,25 @@ public class ArduinoWS {
             aspl = null;
             return "Closed the Arduino serial connection";
         } catch (Exception ex) {
+            System.out.println(ex.toString());
             return ex.toString();
+        }
+    }
+
+    @WebMethod(operationName = "getSerialPortNames")
+    public ArrayList<String> getSerialPortNames() {
+        ArrayList<String> portNames = new ArrayList<String>();
+
+        try {
+            ArrayList<CommPortIdentifier> ports = aspl.getSerialPorts();
+            for (CommPortIdentifier cpi : ports) {
+                portNames.add(cpi.getName());
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } finally {
+            return portNames;
         }
     }
 }
