@@ -1,0 +1,29 @@
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html"
+        renderKitId="PRIMEFACES_MOBILE">
+
+    <pm:page title="SerialToIR Debug">
+        <pm:view id="main" swatch="a">
+            <pm:header title="SerialToIR Debug">
+            </pm:header>
+
+            <pm:content>
+                <h:form id="remoteForm">
+                    <p:outputPanel id="container">
+                        <h:panelGrid columns="2" cellpadding="0">
+                            <p:inputText value="#{serialToIRDebug.port}"/>
+                            <p:commandButton value="setupSerial" update="container" actionListener="#{serialToIRDebug.setupSerial()}" />
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:form>
+            </pm:content>
+        </pm:view>
+    </pm:page>
+
+</f:view>
