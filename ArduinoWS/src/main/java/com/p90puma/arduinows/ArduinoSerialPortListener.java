@@ -46,7 +46,7 @@ public class ArduinoSerialPortListener implements SerialPortEventListener {
         output.write(str.getBytes());
     }
 
-    public ArrayList<CommPortIdentifier> getSerialPorts() throws Exception {
+    public static ArrayList<CommPortIdentifier> getSerialPorts() throws Exception {
         ArrayList<CommPortIdentifier> ports = new ArrayList<CommPortIdentifier>();
         CommPortIdentifier port;
         Enumeration portList = CommPortIdentifier.getPortIdentifiers();
@@ -62,13 +62,21 @@ public class ArduinoSerialPortListener implements SerialPortEventListener {
 
     public static void init(String serialport) throws Exception {
 
-        //update this to use properties file to specify which port the arduino will use. or on wsdl startup.
         CommPortIdentifier portId = null;
         if (serialport == null) {
-            portId = CommPortIdentifier.getPortIdentifier("COM5");//(CommPortIdentifier) n.nextElement();//CommPortIdentifier.getPortIdentifier(CommPortIdentifier.getPortIdentifiers());
+            ArrayList<CommPortIdentifier> ports = getSerialPorts();
+            if (ports.isEmpty()) {
+                portId = CommPortIdentifier.getPortIdentifier("ttyUSB0"); //linux FTDI for now
+            } else {
+                portId = ports.get(0); //grab the first one.
+            }
+
         } else {
             portId = CommPortIdentifier.getPortIdentifier(serialport);
         }
+
+        System.out.println("Setup SerialToIR on port " + portId.getName()); //this will fail if any issues arise and be caught in the WS layer.
+
         serial_port = (SerialPort) portId.open("Arduino", 2000);
         serial_port.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 
