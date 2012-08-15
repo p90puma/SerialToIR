@@ -74,7 +74,7 @@ public class ArduinoWS {
             if (aspl == null) {
                 aspl = new ArduinoSerialPortListener();
             }
-            ArrayList<CommPortIdentifier> ports = aspl.getSerialPorts();
+            ArrayList<CommPortIdentifier> ports = ArduinoSerialPortListener.getSerialPorts();
             for (CommPortIdentifier cpi : ports) {
                 portNames.add(cpi.getName());
             }
