@@ -13,3 +13,24 @@ Install:
 PATH\TO\JDK\jre\lib\ext\RXTXcomm.jar
 PATH\TO\JDK\jre\bin\rxtxParallel.dll
 PATH\TO\JDK\jre\bin\rxtxSerial.dll
+
+
+
+For linux:
+
+Install 32bit or 64bit binary from above, set JAVA_HOME and CLASSPATH and use the .sh script in the cloudhopper release
+
+
+Troubleshooting:
+
+Linux:
+
+Useful commands:
+
+lsusb
+dmesg 
+ls -l /dev/serial/by-id/
+
+Ran into an issue deploying on my production enviroment (Fit-pc slim) Lubuntu 11.10 versus my test/dev install VirtualBox Ubuntu 12.04 hosted on Win7 x64 that turned out to be a permissions issue to /dev/ttyUSB0 which was fixed by
+
+sudo usermod -a -G dialout tomcat6
