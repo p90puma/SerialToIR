@@ -20,8 +20,8 @@
                             <div style="display: inline-block">
                                 <pm:buttonGroup orientation="horizontal">
                                     <p:commandButton value="" update="container" actionListener="#{serialToIR.sendZ5500Power}" icon="refresh" iconPos="center"/>
-                                    <p:commandButton value="" update="container" actionListener="#{serialToIR.sendOptomaPowerON()}"  icon="check" iconPos="center"/>
-                                    <p:commandButton value="" update="container" actionListener="#{serialToIR.sendOptomaPowerOFF()}" icon="delete" iconPos="center"/>
+                                    <p:commandButton value="" update="container" actionListener="#{serialToIR.sendOptomaPowerON}"  icon="check" iconPos="center"/>
+                                    <p:commandButton value="" update="container" actionListener="#{serialToIR.sendOptomaPowerOFF}" icon="delete" iconPos="center"/>
                                 </pm:buttonGroup>
                             </div>
                             <div style="display: inline-block;">
@@ -34,14 +34,14 @@
 
                         <div style="display: inline-block">
                             <pm:buttonGroup orientation="horizontal">
-                                <p:commandButton value="1" update="container" actionListener="#{serialToIR.sendHDMIInput1()}" />
-                                <p:commandButton value="2" update="container" actionListener="#{serialToIR.sendHDMIInput2()}" />
+                                <p:commandButton value="1" update="container" actionListener="#{serialToIR.sendHDMIInput1}" />
+                                <p:commandButton value="2" update="container" actionListener="#{serialToIR.sendHDMIInput2}" />
 
                             </pm:buttonGroup>
 
                             <pm:buttonGroup orientation="horizontal">
-                                <p:commandButton value="3" update="container" actionListener="#{serialToIR.sendHDMIInput3()}" />
-                                <p:commandButton value="4" update="container" actionListener="#{serialToIR.sendHDMIInput4()}" />
+                                <p:commandButton value="3" update="container" actionListener="#{serialToIR.sendHDMIInput3}" />
+                                <p:commandButton value="4" update="container" actionListener="#{serialToIR.sendHDMIInput4}" />
                             </pm:buttonGroup>
 
                         </div>
