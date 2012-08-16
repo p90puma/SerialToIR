@@ -4,6 +4,12 @@
 <xsd:import namespace="http://arduinows.p90puma.com/" schemaLocation="http://localhost:8084/ArduinoWS/ArduinoWSService?xsd=1" />
 </xsd:schema>
 </types>
+<message name="SendSerialInput">
+<part name="parameters" element="tns:SendSerialInput" />
+</message>
+<message name="SendSerialInputResponse">
+<part name="parameters" element="tns:SendSerialInputResponse" />
+</message>
 <message name="SetupArduinoSerial">
 <part name="parameters" element="tns:SetupArduinoSerial" />
 </message>
@@ -16,13 +22,17 @@
 <message name="closeArduinoSerialResponse">
 <part name="parameters" element="tns:closeArduinoSerialResponse" />
 </message>
-<message name="SendSerialInput">
-<part name="parameters" element="tns:SendSerialInput" />
+<message name="getSerialPortNames">
+<part name="parameters" element="tns:getSerialPortNames" />
 </message>
-<message name="SendSerialInputResponse">
-<part name="parameters" element="tns:SendSerialInputResponse" />
+<message name="getSerialPortNamesResponse">
+<part name="parameters" element="tns:getSerialPortNamesResponse" />
 </message>
 <portType name="ArduinoWS">
+<operation name="SendSerialInput">
+<input message="tns:SendSerialInput" />
+<output message="tns:SendSerialInputResponse" />
+</operation>
 <operation name="SetupArduinoSerial">
 <input message="tns:SetupArduinoSerial" />
 <output message="tns:SetupArduinoSerialResponse" />
@@ -31,13 +41,22 @@
 <input message="tns:closeArduinoSerial" />
 <output message="tns:closeArduinoSerialResponse" />
 </operation>
-<operation name="SendSerialInput">
-<input message="tns:SendSerialInput" />
-<output message="tns:SendSerialInputResponse" />
+<operation name="getSerialPortNames">
+<input message="tns:getSerialPortNames" />
+<output message="tns:getSerialPortNamesResponse" />
 </operation>
 </portType>
 <binding name="ArduinoWSPortBinding" type="tns:ArduinoWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+<operation name="SendSerialInput">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
 <operation name="SetupArduinoSerial">
 <soap:operation soapAction="" />
 <input>
@@ -56,7 +75,7 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="SendSerialInput">
+<operation name="getSerialPortNames">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
