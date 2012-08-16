@@ -1,0 +1,6 @@
+Optoma HD20 Remote codes.
+
+NEC iRDA protocol. 38mhz.
+
+Power ON: 4CB340BF
+Power OFF: 4CB310EF

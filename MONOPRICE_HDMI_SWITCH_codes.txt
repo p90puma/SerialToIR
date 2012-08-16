@@ -1,0 +1,13 @@
+Monoprice HDMI Switch Remote codes.
+
+4X1 HDMI® Switcher w/ Toslink & Digital Coaxial Port (Rev.2) w/ 3D support.
+http://www.monoprice.com/products/product.asp?c_id=101&cp_id=10110&cs_id=1011002&p_id=5557&seq=1&format=2
+ProductID: 5557
+
+NEC iRDA protocol. 38mhz.
+
+Input 1: FF10EF
+Input 2: FF50AF
+Input 3: FF30CF
+Input 4: FF708F
+

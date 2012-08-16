@@ -5,6 +5,7 @@
 package com.p90puma.serialtoirmobile.impl;
 
 import com.p90puma.arduinows.ArduinoWS;
+import java.util.ArrayList;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
@@ -24,7 +25,6 @@ public class SerialToIRImpl {
         factory.setAddress("http://localhost:8084/ArduinoWS/ArduinoWSService");
         ArduinoWS client = (ArduinoWS) factory.create();
         String reply = client.sendSerialInput(msg);
-        System.out.println("Server said: " + reply);
     }
 
     public void setupSerial(String port){
@@ -36,7 +36,18 @@ public class SerialToIRImpl {
         factory.setAddress("http://localhost:8084/ArduinoWS/ArduinoWSService");
         ArduinoWS client = (ArduinoWS) factory.create();
         String reply = client.setupArduinoSerial(port);
-        System.out.println("Server said: " + reply);
     }
-    
+
+    public ArrayList<String> getSerialPorts(){
+
+        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+        factory.getInInterceptors().add(new LoggingInInterceptor());
+        factory.getOutInterceptors().add(new LoggingOutInterceptor());
+        factory.setServiceClass(ArduinoWS.class);
+        factory.setAddress("http://localhost:8084/ArduinoWS/ArduinoWSService");
+        ArduinoWS client = (ArduinoWS) factory.create();
+        ArrayList<String> reply = (ArrayList<String>) client.getSerialPortNames();
+        return reply;
+    }
+
 }

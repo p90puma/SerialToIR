@@ -83,6 +83,7 @@ public class ArduinoWS {
 
         } catch (Exception ex) {
             System.out.println(ex.toString());
+            portNames.add(ex.toString());
         } finally {
             return portNames;
         }

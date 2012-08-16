@@ -20,6 +20,10 @@
                             <p:inputText value="#{serialToIRDebug.port}"/>
                             <p:commandButton value="setupSerial" update="container" actionListener="#{serialToIRDebug.setupSerial()}" />
                         </h:panelGrid>
+                        <h:panelGrid columns="2" cellpadding="0">
+                            <p:inputText value="#{serialToIRDebug.ports}"/>
+                            <p:commandButton value="getSerialPorts" update="container" actionListener="#{serialToIRDebug.getSerialPorts()}" />
+                        </h:panelGrid>
                     </p:outputPanel>
                 </h:form>
             </pm:content>

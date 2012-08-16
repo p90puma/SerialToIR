@@ -8,24 +8,34 @@
         contentType="text/html"
         renderKitId="PRIMEFACES_MOBILE">
 
-    <pm:page title="SerialToIR">        
+    <pm:page title="SerialToIR">
         <pm:view id="main" swatch="a">
             <pm:header title="SerialToIR">
             </pm:header>
 
             <pm:content>
-                <h:form id="remoteForm">                    
-                    <p:outputPanel id="container">                 
-                        <p:commandButton value="Power" update="container" actionListener="#{serialToIR.sendPower}" />
-                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+                <h:form id="remoteForm">
+                    <p:outputPanel id="container">
+                        <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+                            <p:commandButton value="Z5500 Power" update="container" actionListener="#{serialToIR.sendZ5500Power}" />
+                            <p:commandButton value="OPTOMA Power ON" update="container" actionListener="#{serialToIR.sendOptomaPowerON()}" />
+                            <p:commandButton value="OPTOMA Power OFF" update="container" actionListener="#{serialToIR.sendOptomaPowerOFF()}" />
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                             <p:commandButton value="Optical" update="container" actionListener="#{serialToIR.sendOptical}" />
                             <p:commandButton value="Direct" update="container" actionListener="#{serialToIR.sendDirect}" />
                         </h:panelGrid>
+                        <h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+                            <p:commandButton value="INPUT 1" update="container" actionListener="#{serialToIR.sendHDMIInput1()}" />
+                            <p:commandButton value="INPUT 2" update="container" actionListener="#{serialToIR.sendHDMIInput2()}" />
+                            <p:commandButton value="INPUT 3" update="container" actionListener="#{serialToIR.sendHDMIInput3()}" />
+                            <p:commandButton value="INPUT 4" update="container" actionListener="#{serialToIR.sendHDMIInput4()}" />
+                        </h:panelGrid>
                         <!--<div style="width: 50%;">-->
-                            <p:commandButton value="VolUP" update="container" actionListener="#{serialToIR.sendVolUP}" />
-                            <p:commandButton value="VolDOWN" update="container" actionListener="#{serialToIR.sendVolDOWN}" />
+                        <p:commandButton value="VolUP" update="container" actionListener="#{serialToIR.sendVolUP}" />
+                        <p:commandButton value="VolDOWN" update="container" actionListener="#{serialToIR.sendVolDOWN}" />
                         <!--</div>-->
-                    </p:outputPanel>                           
+                    </p:outputPanel>
                 </h:form>
             </pm:content>
         </pm:view>
