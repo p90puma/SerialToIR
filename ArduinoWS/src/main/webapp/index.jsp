@@ -5,10 +5,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Homepage</title>
+        <title>SerialToIR: Generic SOAP WS provider for Serial Inputs</title>
     </head>
     <body>
-        <h1>Wsdl url</h1>
-        <a href="http://localhost:8084/ArduinoWS/ArduinoWSService?wsdl">wsdl</a>
+        <h1>SerialToIR Server Side</h1>
+        <h2>Current Status : It's Running!</h2>
+        <br/>
+        <h3>Useful links</h3>
+        <a href="http://localhost:8084/ArduinoWS/ArduinoWSService?wsdl">WSDL</a>
+        <a href="http://localhost:8084/ArduinoWS/ArduinoServlet">Servlet</a>
     </body>
 </html>

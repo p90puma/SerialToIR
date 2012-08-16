@@ -9,7 +9,6 @@ import gnu.io.SerialPort;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import javax.inject.Singleton;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -18,8 +17,9 @@ import javax.jws.WebService;
  *
  * @author P90Puma
  */
+
+//TODO Singleton and DI in Servlet
 @WebService()
-@Singleton
 public class ArduinoWS {
 
     SerialPort serial_port;

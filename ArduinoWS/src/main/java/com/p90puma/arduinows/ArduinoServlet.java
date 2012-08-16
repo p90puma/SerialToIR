@@ -6,26 +6,18 @@ package com.p90puma.arduinows;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.WebServiceContext;
 
 /**
  *
  * @author sjakubowski
  */
-//@WebServlet(name = "ArduinoServlet", urlPatterns = {"/ArduinoServlet"})
 public class ArduinoServlet extends HttpServlet {
 
-//    @Inject
-//    ArduinoWS ws;
-    @Resource
-    protected WebServiceContext context;
+    private ArduinoWS ws = new ArduinoWS();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,17 +26,22 @@ public class ArduinoServlet extends HttpServlet {
         try {
             out.println("<h2>Servlet ArduinoServlet at " + request.getContextPath() + "</h2>");
 
+            //TODO do all the other webservices
 
+            String msg = request.getParameter("serial");
+            
+            if (msg == null) {
+                out.println("<br/>");
+                out.println("No serial input found, use ?serial=YOURINPUTHERE");
 
-            String i = request.getParameter("arduino_msg");
+            } else {
 
-            String result = "hello";// ws.sendSerialInput(i);
+                String result = ws.sendSerialInput(msg);
 
-
-
-            out.println("<br/>");
-            out.println("Result:");
-            out.println(result);
+                out.println("<br/>");
+                out.println("Result:");
+                out.println(result);
+            }
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -54,7 +51,6 @@ public class ArduinoServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.
@@ -86,7 +82,6 @@ public class ArduinoServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Arduino Servlet";
     }
-    // </editor-fold>
 }
