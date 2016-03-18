@@ -36,10 +36,14 @@
             <artifactId>jaxws-rt</artifactId>
             <version>2.1.7</version>
         </dependency>
+        <!-- NOTE this won't exist unless you run install.sh -->
         <dependency>
             <groupId>org.rxtx</groupId>
             <artifactId>rxtx</artifactId>
-            <version>2.1.7</version>
+            <version>2.2pre2</version>
+            <type>so</type>
+            <classifier>bin</classifier>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -136,6 +140,26 @@
                         </configuration>
                         <goals>
                             <goal>java2ws</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assemblies/distribution.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>

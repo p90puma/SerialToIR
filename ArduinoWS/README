@@ -1,1 +1,6 @@
 Serial Arduino input -> iRDA NEC output.
+
+Credits:
+
+https://github.com/bpg/rxtx-maven
+http://fizzed.com/oss/rxtx-for-java  <- for ubuntu this was a lifesaver, the package in here for 64bit (added in extras, saved me)
